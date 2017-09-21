@@ -1,3 +1,10 @@
+def git_A():
+	return  [[1.0/(i+j-1) for i in range(1,11)] for j in range(1,11)]
+	#return [[9,-1,-1],[-1,12,-1],[-1,-1,15]]
+
+def git_b():
+	return  [[1.0/i] for i in range(1,11)]
+	#return	b=[[21],[30],[39]]
 
 def diag(A):
 	n=len(A)
@@ -58,10 +65,8 @@ def precision(A,n):
 	return [[ round(A[i][j],n) for j in range(len(A[0]))] for i in range(len(A))]
 
 def Jacobi():
-	A = [[1.0/(i+j-1) for i in range(1,11)] for j in range(1,11)]
-	b = [[1.0/i] for i in range(1,11)]
-#	A=[[9,-1,-1],[-1,12,-1],[-1,-1,15]]
-#	b=[[21],[30],[39]]
+	A =git_A()
+	b = git_b()
 	D=diag(A)
 	Al=tril(A)
 	Ar=triu(A)
@@ -84,10 +89,8 @@ def Jacobi():
 
 
 def SOR():
-	A = [[1.0/(i+j-1) for i in range(1,11)] for j in range(1,11)]
-	b = [[1.0/i] for i in range(1,11)]
-#	A=[[9,-1,-1],[-1,12,-1],[-1,-1,15]]
-#	b=[[21],[30],[39]]
+	A =git_A()
+	b = git_b()
 	D=diag(A)
 	Al=tril(A)
 	Ar=triu(A)
@@ -107,24 +110,24 @@ def SOR():
 #		print(x)
 	return [precision(x,6),precision(abs_minus(mul(A,x),b),6),n]
 
-	
-re=Jacobi()
-print()
-print("Jacobi:")
-if(re[2]>=100):
-	print("Error,No result!")
-else:
-	print("Result:",re[0])
-	print("Deviation: ",re[1])
-	print("number: ",re[2])
+if __name__ == "__main__":
+	re=Jacobi()
+	print(" ")
+	print("Jacobi:")
+	if(re[2]>=100):
+		print("Error,No result!")
+	else:
+		print("Result:"+str(re[0]))
+		print("Deviation: "+str(re[1]))
+		print("number: "+str(re[2]))
 
-re=SOR()
-print()
-print("SOR:")
-if(re[2]>=100):
-	print("Error,No result!")
-else:
-	print("Result:",re[0])
-	print("Deviation: ",re[1])
-	print("number: ",re[2])
+	re=SOR()
+	print(" ")
+	print("SOR:")
+	if(re[2]>=100):
+		print("Error,No result!")
+	else:
+		print("Result:"+str(re[0]))
+		print("Deviation: "+str(re[1]))
+		print("number: "+str(re[2]))
 
